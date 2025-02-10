@@ -1,0 +1,7 @@
+---
+- name: Remove IP Address on vJunos interface
+  junipernetworks.junos.junos_config:
+    lines:
+      - "delete interfaces {{ item.key }} unit 0 family inet address {{ item.value}}"
+    comment: "Configured by Ansible - Set Interface IP"
+  with_dict: "{{ interfaces }}"

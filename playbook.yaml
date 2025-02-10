@@ -1,0 +1,22 @@
+---
+- name: Configure vJunos device
+  hosts: juniper
+  connection: local
+  gather_facts: no
+  vars:
+    ansible_python_interpreter: /etc/ansible/venv/bin/python
+
+  tasks:
+    # Set IP address
+    - name: Set IP Address on vJunos interface
+      import_tasks: scenario/juniper/set_IPAddress/set_ip_address.yaml
+
+    # Remove IP address
+    #- name: Remove IP Address on vJunos interface
+    #  import_tasks: scenario/juniper/remove_IPAddress/remove_ip_address.yaml
+
+    # Commit the configuration using junos_config module
+    - name: Commit the configuration
+      junipernetworks.junos.junos_config:
+        confirm_commit: true
+        comment: "Configuration committed by Ansible"
