@@ -1,0 +1,23 @@
+---
+- name: Run show interfaces command on vJunos
+  junipernetworks.junos.junos_command:
+    commands:
+      - "show interfaces"
+  register: interface_status
+
+- name: Extract interfaces and their associated Local IP addresses
+  set_fact:
+    interface_ip_address_info: "{{ interface_status.stdout[0] | regex_findall('Logical interface ([^\\s]+)[\\s\\S]*?Local: ([\\d\\.]+)(?=[\\s,])') }}"
+
+- name: GetSetup
+  setup:
+
+- name: Save config result to file
+  copy:
+        content: "{{ interface_ip_address_info | join('\n') }}"
+        dest: "/etc/ansible/log/{{ ansible_date_time.date | replace('-', '') }}_{{ ansible_date_time.time | replace(':', '') }}_{{ scenario_name }}.txt"
+
+- name: Display extracted interfaces and IP addresses
+  debug:
+    msg:
+  loop: "{{ interface_ip_address_info }}"

@@ -7,13 +7,27 @@
     ansible_python_interpreter: /etc/ansible/venv/bin/python
 
   tasks:
+    # Show IP address
+    #- name: Show IP Address on vJunos interface
+    #  import_tasks: scenario/juniper/check_ip_address/main.yaml
+
     # Set IP address
-    - name: Set IP Address on vJunos interface
-      import_tasks: scenario/juniper/set_IPAddress/set_ip_address.yaml
+    #- name: Set IP Address on vJunos interface
+    #  import_tasks: scenario/juniper/set_ip_address/main.yaml
 
     # Remove IP address
     #- name: Remove IP Address on vJunos interface
-    #  import_tasks: scenario/juniper/remove_IPAddress/remove_ip_address.yaml
+    #  import_tasks: scenario/juniper/remove_ip_address/main.yaml
+    
+    # Set Area and InterfaceType
+    #- name: Set Area(0) and InterfaceType(p2p)
+    #  import_tasks: scenario/juniper/set_ospf_area_interface_type/main.yaml
+
+
+    # Remove Area and InterfaceType
+    - name: Remove Area(0) and InterfaceType(p2p)
+      import_tasks: scenario/juniper/remove_ospf_area_interface_type/main.yaml
+
 
     # Commit the configuration using junos_config module
     - name: Commit the configuration
