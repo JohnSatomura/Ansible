@@ -19,15 +19,21 @@
     #- name: Remove IP Address on vJunos interface
     #  import_tasks: scenario/juniper/remove_ip_address/main.yaml
     
-    # Set Area and InterfaceType
-    #- name: Set Area(0) and InterfaceType(p2p)
-    #  import_tasks: scenario/juniper/set_ospf_area_interface_type/main.yaml
+    # Set Area 
+    #- name: Set Area(0) 
+    #  import_tasks: scenario/juniper/set_ospf_area/main.yaml
 
+    # Remove Area
+    #- name: Remove Area(0)
+    #  import_tasks: scenario/juniper/remove_ospf_area/main.yaml
 
-    # Remove Area and InterfaceType
-    - name: Remove Area(0) and InterfaceType(p2p)
-      import_tasks: scenario/juniper/remove_ospf_area_interface_type/main.yaml
+    # Set Router-ID
+    - name : Set Router-ID
+     import_tasks: scenario/juniper/set_ospf_router_id/main.yaml
 
+    # Remove Router-ID
+    #- name : Remove Router-ID
+    #  import_tasks: scenario/juniper/remove_ospf_router_id/main.yaml
 
     # Commit the configuration using junos_config module
     - name: Commit the configuration

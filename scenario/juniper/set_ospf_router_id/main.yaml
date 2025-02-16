@@ -1,0 +1,7 @@
+---
+- name: Set Router ID
+  junipernetworks.junos.junos_config:
+    lines:
+      - "set routing-options router-id {{ router_id }}"
+    comment: "Configured by Ansible - Set Router-ID"
+

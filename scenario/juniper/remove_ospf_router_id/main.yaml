@@ -1,0 +1,7 @@
+---
+- name: Remove Router ID
+  junipernetworks.junos.junos_config:
+    lines:
+      - "delete routing-options router-id {{ router_id }}"
+    comment: "Configured by Ansible - Remove Router-ID"
+
