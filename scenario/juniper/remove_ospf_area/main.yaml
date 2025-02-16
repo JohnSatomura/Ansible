@@ -1,0 +1,8 @@
+---
+- name: Remove Area
+  junipernetworks.junos.junos_config:
+    lines:
+      - "delete protocols ospf area {{ item.value.area }}  interface {{ item.key }}.0"
+    comment: "Configured by Ansible - Remove Interface Area"
+  with_dict: "{{ interfaces }}"
+

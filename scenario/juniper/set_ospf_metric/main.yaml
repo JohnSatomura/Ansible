@@ -1,0 +1,8 @@
+---
+- name: Set Metric
+  junipernetworks.junos.junos_config:
+    lines:
+      - "set protocols ospf area {{ item.value.area }} interface {{ item.key }}.0 metric {{ item.value.metric }}"
+    comment: "Configured by Ansible - Set metric"
+  with_dict: "{{ interfaces }}"
+

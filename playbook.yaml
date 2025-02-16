@@ -27,13 +27,25 @@
     #- name: Remove Area(0)
     #  import_tasks: scenario/juniper/remove_ospf_area/main.yaml
 
+    # Set Area 
+    #- name: Set Interface-Type
+    #  import_tasks: scenario/juniper/set_ospf_interface_type/main.yaml
+
+    # Remove Area
+    #- name: Remove Interface-Type
+    #  import_tasks: scenario/juniper/remove_ospf_interface_type/main.yaml
+    
     # Set Router-ID
-    - name : Set Router-ID
-     import_tasks: scenario/juniper/set_ospf_router_id/main.yaml
+    #- name : Set Router-ID
+    # import_tasks: scenario/juniper/set_ospf_router_id/main.yaml
 
     # Remove Router-ID
     #- name : Remove Router-ID
     #  import_tasks: scenario/juniper/remove_ospf_router_id/main.yaml
+
+    # Set Metric
+    - name : Set Metric
+      import_tasks: scenario/juniper/set_ospf_metric/main.yaml
 
     # Commit the configuration using junos_config module
     - name: Commit the configuration

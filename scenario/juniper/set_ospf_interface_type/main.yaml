@@ -1,0 +1,8 @@
+---
+- name: Set Area
+  junipernetworks.junos.junos_config:
+    lines:
+      - "set protocols ospf area {{ item.value.area }} interface {{ item.key }}.0 interface-type {{ item.value.type }}"
+    comment: "Configured by Ansible - Set Interface Type"
+  with_dict: "{{ interfaces }}"
+
